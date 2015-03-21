@@ -1,5 +1,6 @@
 require('buildinghelper')
 require('playerstats')
+require('abilities')
 --require('cfroundthinker')
 
 BUILD_TIME=1.0
@@ -7,78 +8,79 @@ BUILD_TIME=1.0
 jjj={"orc","nature","element","knight","beast","semi","demon","spirit"}
 
 function getBuildingPoint(keys)
-
-	local point = BuildingHelper:AddBuildingToGrid(keys.target_points[1], 2, keys.caster)
-	local inTrigger = false
-	local CHECKINGRADIUS = 10
-	local caster = keys.caster
+  local caster = keys.caster
   local pid = caster:GetPlayerID()
   local name = keys.UName
   local rk = keys.RenKou
   local gc = keys.GoldCost
-  if PlayerS[pid][1]>=gc then
-  
-    
-    
-    for _,thing in pairs(Entities:FindAllInSphere(GetGroundPosition(keys.target_points[1], nil), CHECKINGRADIUS) )  do
- 
-        if (thing:GetName() == PlayerS[pid][10]) or (thing:GetName() == PlayerS[pid][11]) then
-            inTrigger = true
-        else
-            inTrigger = false
-        end
- 
-        if (inTrigger == true) then
-         	if point ~= -1 then
-         	  if ((PlayerS[pid][4]-PlayerS[pid][3])>=rk) then
-         	  
-         	    PlayerS[12]=PlayerS[12]+1;  --玩家操控单位数量+1
-         	    PlayerS[pid][1]=PlayerS[pid][1]-gc  --扣除金钱
-         	  
-              
-              PlayerS[13][PlayerS[12]]=CreateUnitByName(name, point, false, nil, nil, keys.caster:GetTeam())
-              
-              PlayerS[pid][3]=PlayerS[pid][3]+rk;
-              
-              PlayerS[13][PlayerS[12]]:AddNewModifier(caster, nil, "modifier_rooted", nil)
-            
-		          BuildingHelper:AddBuilding(PlayerS[13][PlayerS[12]])
-		          PlayerS[13][PlayerS[12]]:UpdateHealth(BUILD_TIME,true,.85)
-		          PlayerS[13][PlayerS[12]]:SetHullRadius(64)
-		          PlayerS[13][PlayerS[12]]:SetControllableByPlayer( keys.caster:GetPlayerID(), true )
-		          
-		          PlayerS[13][PlayerS[12]]:SetOwner(PlayerResource:GetPlayer(pid))
-		          
-		          PlayerS[13][PlayerS[12]]:SetContext("name",tostring(PlayerS[12]),0)
-		          PlayerS[13][PlayerS[12]]:SetContext("pid",tostring(pid),0)
-		          PlayerS[14][PlayerS[12]]=pid    --pid
-		          
-		          PlayerS[15][PlayerS[12]]=point
-		          PlayerS[16][PlayerS[12]]=name
-		          
-		          PlayerS[17][PlayerS[12]]=caster
-		          PlayerS[18][PlayerS[12]]=keys.caster:GetTeam()
-		          sendinfotoui();                     --更新面板
-		        else
-		          Say(nil,"you need more food!", false)
-		        
-		        end
-        	else
-		        Say(nil,"you can't build on a existing unit", false)
-		  
-	        end
-	      else
-	 --       Say(nil,"you can't build here", false)
-	        
-        end
-    end
-	else
-	  Say(nil,"not enough gold", false)
-	end
-	
-	
-	
 
+  local player = keys.caster:GetPlayerOwner()
+  local pID = player:GetPlayerID()
+  
+  if ((PlayerS[pid][4]-PlayerS[pid][3])<rk) then
+    Say(nil,"you need more food!", false)
+    return
+  end
+
+  if PlayerS[pid][1]<gc then
+    Say(nil,"you need more gold!", false)
+    return
+  end    
+
+  -- Check if player has enough resources here. If he doesn't they just return this function.
+  
+  local returnTable = BuildingHelper:AddBuilding(keys)
+
+  keys:OnBuildingPosChosen(function(vPos)
+    --print("OnBuildingPosChosen")
+    -- in WC3 some build sound was played here.
+  end)
+
+  keys:OnConstructionStarted(function(unit)
+    if Debug_BH then
+      print("Started construction of " .. unit:GetUnitName())
+    end
+    -- Unit is the building be built.
+    -- Play construction sound
+    -- FindClearSpace for the builder
+    FindClearSpaceForUnit(keys.caster, keys.caster:GetAbsOrigin(), true)
+    -- start the building with 0 mana.
+    unit:SetMana(0)
+  end)
+  keys:OnConstructionCompleted(function(unit)
+    if Debug_BH then
+      print("Completed construction of " .. unit:GetUnitName())
+    end
+    -- Play construction complete sound.
+    -- Give building its abilities
+    -- add the mana
+     PlayerS[12]=PlayerS[12]+1;  --玩家操控单位数量+1
+     PlayerS[pid][1]=PlayerS[pid][1]-gc  --扣除金钱
+      
+     PlayerS[13][PlayerS[12]]=unit
+     PlayerS[pid][3]=PlayerS[pid][3]+rk;
+              
+     PlayerS[13][PlayerS[12]]:AddNewModifier(caster, nil, "modifier_rooted", nil)
+            
+     --BuildingHelper:AddBuilding(PlayerS[13][PlayerS[12]])
+     --PlayerS[13][PlayerS[12]]:UpdateHealth(BUILD_TIME,true,.85)
+     --PlayerS[13][PlayerS[12]]:SetHullRadius(64)
+     --PlayerS[13][PlayerS[12]]:SetControllableByPlayer( keys.caster:GetPlayerID(), true )
+     --PlayerS[13][PlayerS[12]]:SetOwner(PlayerResource:GetPlayer(pid))
+     PlayerS[13][PlayerS[12]]:SetContext("name",tostring(PlayerS[12]),0)
+     PlayerS[13][PlayerS[12]]:SetContext("pid",tostring(pid),0)
+     PlayerS[14][PlayerS[12]]=pid    --pid
+       
+     PlayerS[15][PlayerS[12]]=unit:GetAbsOrigin()
+     PlayerS[16][PlayerS[12]]=name
+              
+     PlayerS[17][PlayerS[12]]=caster
+     PlayerS[18][PlayerS[12]]=keys.caster:GetTeam()
+     sendinfotoui();                     --更新面板
+    unit:SetMana(unit:GetMaxMana())
+  end)
+
+  
 end
 
 
@@ -327,27 +329,27 @@ function gegeda_2( keys )
   local tt=caster:GetContext("name")
   local pid=tonumber(caster:GetContext("name")) 
   if PlayerS[pid][1]>=50 then
+  
 
 	GameRules:GetGameModeEntity():SetContextThink(DoUniqueString("gegeda"), 
-		function( )
-			local effect2 = ParticleManager:CreateParticle(keys.effect2, PATTACH_WORLDORIGIN, caster)
-			ParticleManager:SetParticleControl(effect2, 0, caster:GetOrigin())
-			ParticleManager:ReleaseParticleIndex(effect2)
-				--增加木材
-			PopupNumbers(caster, "heal", Vector(0, 255, 0), 1.0, 10+PlayerS[pid][8], POPUP_SYMBOL_PRE_PLUS, nil)
-
-			
+    
+	  function( )
+      local state = GameRules:State_Get()
+      if state == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+  			local effect2 = ParticleManager:CreateParticle(keys.effect2, PATTACH_WORLDORIGIN, caster)
+	  		ParticleManager:SetParticleControl(effect2, 0, caster:GetOrigin())
+	  		ParticleManager:ReleaseParticleIndex(effect2)
+	  			--增加木材
+	  		PopupNumbers(caster, "heal", Vector(0, 255, 0), 1.0, 10+PlayerS[pid][8], POPUP_SYMBOL_PRE_PLUS, nil)
 	
-			PlayerS[pid][2]=PlayerS[pid][2]+10+PlayerS[pid][8]
+	  		PlayerS[pid][2]=PlayerS[pid][2]+10+PlayerS[pid][8]
 			
-			sendinfotoui()
-			return keys.time
+	  		sendinfotoui()
+	  		return keys.time
 			
-		
-		
-			
-			
-		end, 0)
+	  	end
+    end
+    , 0)
   caster:RemoveAbility("gegeda")
   PlayerS[pid][7]=PlayerS[pid][7]+1
   sendinfotoui()
@@ -527,7 +529,7 @@ function testgrid(keys)
       -- Do something here for the player who called this command
     for i,v in ipairs(BUILDING_SQUARES) do
       for i2,v2 in ipairs(v) do
-        BuildingHelper:PrintSquareFromCenterPoint(v2)
+        --BuildingHelper:PrintSquareFromCenterPoint(v2)
       end
     end
     end

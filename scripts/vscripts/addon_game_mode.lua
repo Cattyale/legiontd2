@@ -1,8 +1,12 @@
 require('CFRoundThinker')
 require('CFSpawner')
 require('playerstats')
+require('timers')
+require('physics')
+require('FlashUtil')
 require('buildinghelper')
-
+require('abilities')
+require('util')
 hulage=0
 if legiontdGameMode == nil then
 	legiontdGameMode = class({})
@@ -322,6 +326,8 @@ function Precache( context )
   	print("BEGIN TO PRECACHE RESOURCE")
 	local time = GameRules:GetGameTime()
 	PrecacheEveryThingFromKV( context )
+	PrecacheResource("particle_folder", "particles/buildinghelper", context)
+	PrecacheUnitByNameSync("npc_dota_hero_tinker", context)
 	time = time - GameRules:GetGameTime()
 	print("DONE PRECACHEING IN:"..tostring(time).."Seconds")
 end
@@ -342,7 +348,7 @@ end
 function legiontdGameMode:InitGameMode()
 
   --准备时间
-	GameRules:SetPreGameTime(60)
+	GameRules:SetPreGameTime(600)
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, "GlobalThink", 2 )
   
   GameRules:SetSameHeroSelectionEnabled(true)
@@ -351,9 +357,12 @@ function legiontdGameMode:InitGameMode()
   GameRules:GetGameModeEntity():SetRecommendedItemsDisabled(true)
   hulage=0
   CFRoundThinker:InitPara()
-
-
+  
+  BuildingHelper:Init()
   ListenToGameEvent("npc_spawned", Dynamic_Wrap(legiontdGameMode, "OnNPCSpawned"), self)
+  ListenToGameEvent('entity_killed', Dynamic_Wrap(legiontdGameMode, 'OnEntityKilled'), self)
+  ListenToGameEvent('dota_player_used_ability', Dynamic_Wrap(legiontdGameMode, 'OnAbilityUsed'), self)
+
 end
 
 
@@ -387,9 +396,68 @@ function legiontdGameMode:OnNPCSpawned( keys )
 end
 
 
+function legiontdGameMode:OnEntityKilled( keys )
+	--print( '[SAMPLERTS] OnEntityKilled Called' )
+	--PrintTable( keys )
+  --[[
+	-- The Unit that was Killed
+	local killedUnit = EntIndexToHScript( keys.entindex_killed )
+	-- The Killing entity
+	local killerEntity = nil
 
+	if keys.entindex_attacker ~= nil then
+		killerEntity = EntIndexToHScript( keys.entindex_attacker )
+	end
 
+	if killedUnit:IsRealHero() then
+		--print ("KILLEDKILLER: " .. killedUnit:GetName() .. " -- " .. killerEntity:GetName())
+		if killedUnit:GetTeam() == DOTA_TEAM_BADGUYS and killerEntity:GetTeam() == DOTA_TEAM_GOODGUYS then
+			self.nRadiantKills = self.nRadiantKills + 1
+			if END_GAME_ON_KILLS and self.nRadiantKills >= KILLS_TO_END_GAME_FOR_TEAM then
+				GameRules:SetSafeToLeave( true )
+				GameRules:SetGameWinner( DOTA_TEAM_GOODGUYS )
+			end
+		elseif killedUnit:GetTeam() == DOTA_TEAM_GOODGUYS and killerEntity:GetTeam() == DOTA_TEAM_BADGUYS then
+			self.nDireKills = self.nDireKills + 1
+			if END_GAME_ON_KILLS and self.nDireKills >= KILLS_TO_END_GAME_FOR_TEAM then
+				GameRules:SetSafeToLeave( true )
+				GameRules:SetGameWinner( DOTA_TEAM_BADGUYS )
+			end
+		end
 
+		if SHOW_KILLS_ON_TOPBAR then
+			GameRules:GetGameModeEntity():SetTopBarTeamValue ( DOTA_TEAM_BADGUYS, self.nDireKills )
+			GameRules:GetGameModeEntity():SetTopBarTeamValue ( DOTA_TEAM_GOODGUYS, self.nRadiantKills )
+		end
+	end]]
+	-- Put code here to handle when an entity gets killed
+	-- START OF BH SNIPPET
+	if BuildingHelper:IsBuilding(killedUnit) then
+		killedUnit:RemoveBuilding(false)
+	end
+	-- END OF BH SNIPPET
+end
+
+function legiontdGameMode:OnAbilityUsed(keys)
+	--print('[SAMPLERTS] AbilityUsed')
+	--PrintTable(keys)
+
+	local player = EntIndexToHScript(keys.PlayerID)
+	local abilityname = keys.abilityname
+
+	-- Cancel the ghost if the player casts another active ability.
+	-- Start of BH Snippet:
+	if player.cursorStream ~= nil then
+		if not (string.len(abilityname) > 14 and string.sub(abilityname,1,14) == "move_to_point_") then
+			if not DontCancelBuildingGhostAbils[abilityname] then
+				player:CancelGhost()
+			else
+				print(abilityname .. " did not cancel building ghost.")
+			end
+		end
+	end
+	-- End of BH Snippet
+end
 
 
 
@@ -413,7 +481,6 @@ function legiontdGameMode:OnThink()
 	if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
 	
 
- 	  print("executing thinking")
 		CFRoundThinker:Think()
 	elseif GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then
 		return nil

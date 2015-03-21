@@ -1,6 +1,8 @@
 ﻿package {
 	import flash.display.MovieClip;
 	import flash.events.MouseEvent;
+	import flash.utils.Timer;
+    import flash.events.TimerEvent;
 	//import some stuff from the valve lib
 	import ValveLib.Globals;
 	import ValveLib.ResizeManager;
@@ -11,6 +13,7 @@
 		public var gameAPI:Object;
 		public var globals:Object;
 		public var elementName:String;
+        public var timerGetGold:Timer = new Timer(250, 0); 
 
 		//constructor, you usually will use onLoaded() instead
 		var kg:Number=0;
@@ -28,7 +31,8 @@
 			//make this UI visible
 			visible = true;
 			trace("start onloaded");
-		
+			timerGetGold.addEventListener(TimerEvent.TIMER_COMPLETE, this.GoldChanged);
+			timerGetGold.start();
 			//let the client rescale the UI
 			Globals.instance.resizeManager.AddListener(this);
 			
@@ -54,7 +58,12 @@
 		 //  this.mTaskPanel.CreateBtn();
 			
 		}
-						
+		
+		public function GoldChanged(e:TimerEvent){
+			this.globals.Loader_shop.movieClip.shop.recommendedTab.visible = false;
+			this.globals.Loader_actionpanel.movieClip.middle.statRegion.visible=false;
+			this.globals.Loader_actionpanel.movieClip.middle.stats.visible.false;
+		}
 		//this handles the resizes - credits to Nullscope
 		public function onResize(re:ResizeManager) : * {
 
