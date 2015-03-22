@@ -1847,41 +1847,64 @@
   "element_1"                      
   {
     "BaseClass" "ability_datadriven"
-    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
     "AbilityManaCost" "0"
     "AbilityTextureName" "element_10"
-    "AbilityCastRange" "500"
+    "AbilityCastRange" "100"
     "AbilityCastPoint" "0"
     "AbilityChannelTime" "1.5"
-    "OnChannelSucceeded"
+    // BuildingHelper info
+    "Building"            "1" //bool
+    "BuildingSize"          "2" // this is (3x64) by (3x64) units, so 9 squares.
+    "BuildTime"           "2.0"
+    "AbilityCastRange"        "100"
+    "UpdateHealth"          "1" //bool
+    "Scale"             "1" //bool
+    "MaxScale"            "1.3"
+    "PlayerCanControl"        "1" //bool. Should the player issuing this build command be able to control the building once built?
+    "UnitName"            "npc_element_10"
+
+    "OnSpellStart"
     {
       "RunScript"
       { "Target"          "POINT"
         "ScriptFile"      "scripts/vscripts/buildings.lua"
         "Function"        "getBuildingPoint"
         "UName"           "npc_element_10"
-        "GoldCost"        "100"
+        "GoldCost"        "20"
         "RenKou"          "1"
       }
     }
+
   }
     "element_2"                   
   {
-    "BaseClass" "ability_datadriven"
-    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+       "BaseClass" "ability_datadriven"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
     "AbilityManaCost" "0"
     "AbilityTextureName" "element_20"
-    "AbilityCastRange" "500"
+    "AbilityCastRange" "100"
     "AbilityCastPoint" "0"
     "AbilityChannelTime" "1.5"
-    "OnChannelSucceeded"
+    // BuildingHelper info
+    "Building"            "1" //bool
+    "BuildingSize"          "2" // this is (3x64) by (3x64) units, so 9 squares.
+    "BuildTime"           "2.0"
+    "AbilityCastRange"        "100"
+    "UpdateHealth"          "1" //bool
+    "Scale"             "1" //bool
+    "MaxScale"            "1.3"
+    "PlayerCanControl"        "1" //bool. Should the player issuing this build command be able to control the building once built?
+    "UnitName"            "npc_element_20"
+
+    "OnSpellStart"
     {
       "RunScript"
       { "Target"          "POINT"
         "ScriptFile"      "scripts/vscripts/buildings.lua"
         "Function"        "getBuildingPoint"
         "UName"           "npc_element_20"
-        "GoldCost"        "100"
+        "GoldCost"        "50"
         "RenKou"          "1"
       }
     }
@@ -1889,84 +1912,128 @@
     "element_3"                    
   {
     "BaseClass" "ability_datadriven"
-    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
     "AbilityManaCost" "0"
     "AbilityTextureName" "element_30"
-    "AbilityCastRange" "500"
+    "AbilityCastRange" "100"
     "AbilityCastPoint" "0"
     "AbilityChannelTime" "1.5"
-    "OnChannelSucceeded"
+    // BuildingHelper info
+    "Building"            "1" //bool
+    "BuildingSize"          "2" // this is (3x64) by (3x64) units, so 9 squares.
+    "BuildTime"           "2.0"
+    "AbilityCastRange"        "100"
+    "UpdateHealth"          "1" //bool
+    "Scale"             "1" //bool
+    "MaxScale"            "1.3"
+    "PlayerCanControl"        "1" //bool. Should the player issuing this build command be able to control the building once built?
+    "UnitName"            "npc_element_30"
+
+    "OnSpellStart"
     {
       "RunScript"
       { "Target"          "POINT"
         "ScriptFile"      "scripts/vscripts/buildings.lua"
         "Function"        "getBuildingPoint"
         "UName"           "npc_element_30"
-        "GoldCost"        "100"
+        "GoldCost"        "80"
         "RenKou"          "1"
       }
     }
   }
     "element_4"                      
   {
-    "BaseClass" "ability_datadriven"
-    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+       "BaseClass" "ability_datadriven"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
     "AbilityManaCost" "0"
     "AbilityTextureName" "element_40"
-    "AbilityCastRange" "500"
+    "AbilityCastRange" "100"
     "AbilityCastPoint" "0"
     "AbilityChannelTime" "1.5"
-    "OnChannelSucceeded"
+    // BuildingHelper info
+    "Building"            "1" //bool
+    "BuildingSize"          "2" // this is (3x64) by (3x64) units, so 9 squares.
+    "BuildTime"           "2.0"
+    "AbilityCastRange"        "100"
+    "UpdateHealth"          "1" //bool
+    "Scale"             "1" //bool
+    "MaxScale"            "1.3"
+    "PlayerCanControl"        "1" //bool. Should the player issuing this build command be able to control the building once built?
+    "UnitName"            "npc_element_40"
+
+    "OnSpellStart"
     {
       "RunScript"
       { "Target"          "POINT"
         "ScriptFile"      "scripts/vscripts/buildings.lua"
         "Function"        "getBuildingPoint"
         "UName"           "npc_element_40"
-        "GoldCost"        "100"
+        "GoldCost"        "130"
         "RenKou"          "1"
       }
     }
   }
     "element_5"                      
   {
-    "BaseClass" "ability_datadriven"
-    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+        "BaseClass" "ability_datadriven"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
     "AbilityManaCost" "0"
     "AbilityTextureName" "element_50"
-    "AbilityCastRange" "500"
+    "AbilityCastRange" "100"
     "AbilityCastPoint" "0"
     "AbilityChannelTime" "1.5"
-    "OnChannelSucceeded"
+    // BuildingHelper info
+    "Building"            "1" //bool
+    "BuildingSize"          "2" // this is (3x64) by (3x64) units, so 9 squares.
+    "BuildTime"           "2.0"
+    "AbilityCastRange"        "100"
+    "UpdateHealth"          "1" //bool
+    "Scale"             "1" //bool
+    "MaxScale"            "1.3"
+    "PlayerCanControl"        "1" //bool. Should the player issuing this build command be able to control the building once built?
+    "UnitName"            "npc_element_50"
+
+    "OnSpellStart"
     {
       "RunScript"
       { "Target"          "POINT"
         "ScriptFile"      "scripts/vscripts/buildings.lua"
         "Function"        "getBuildingPoint"
         "UName"           "npc_element_50"
-        "GoldCost"        "100"
+        "GoldCost"        "200"
         "RenKou"          "1"
       }
     }
   }
     "element_6"                      
   {
-    "BaseClass" "ability_datadriven"
-    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+        "BaseClass" "ability_datadriven"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
     "AbilityManaCost" "0"
     "AbilityTextureName" "element_60"
-    "AbilityCastRange" "500"
+    "AbilityCastRange" "100"
     "AbilityCastPoint" "0"
     "AbilityChannelTime" "1.5"
-    "OnChannelSucceeded"
+    // BuildingHelper info
+    "Building"            "1" //bool
+    "BuildingSize"          "2" // this is (3x64) by (3x64) units, so 9 squares.
+    "BuildTime"           "2.0"
+    "AbilityCastRange"        "100"
+    "UpdateHealth"          "1" //bool
+    "Scale"             "1" //bool
+    "MaxScale"            "1.3"
+    "PlayerCanControl"        "1" //bool. Should the player issuing this build command be able to control the building once built?
+    "UnitName"            "npc_element_60"
+
+    "OnSpellStart"
     {
       "RunScript"
       { "Target"          "POINT"
         "ScriptFile"      "scripts/vscripts/buildings.lua"
         "Function"        "getBuildingPoint"
         "UName"           "npc_element_60"
-        "GoldCost"        "100"
-        "RenKou"          "1"
+        "GoldCost"        "345"
+        "RenKou"          "2"
       }
     }
   }
@@ -2213,7 +2280,7 @@
         "ScriptFile"			"scripts/vscripts/buildings.lua"
 				"Function"				"getBuildingPoint"
 				"UName"           "npc_orc_10"
-				"GoldCost"        "100"
+				"GoldCost"        "20"
 				"RenKou"          "1"
       }
     }
@@ -2221,105 +2288,160 @@
     "orc_2"                       //造术士
   {
     "BaseClass" "ability_datadriven"
-    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
     "AbilityManaCost" "0"
     "AbilityTextureName" "orc_20"
-    "AbilityCastRange" "500"
+    "AbilityCastRange" "100"
     "AbilityCastPoint" "0"
     "AbilityChannelTime" "1.5"
-    "OnChannelSucceeded"
+    // BuildingHelper info
+    "Building"            "1" //bool
+    "BuildingSize"          "2" // this is (3x64) by (3x64) units, so 9 squares.
+    "BuildTime"           "2.0"
+    "AbilityCastRange"        "100"
+    "UpdateHealth"          "1" //bool
+    "Scale"             "1" //bool
+    "MaxScale"            "1.3"
+    "PlayerCanControl"        "1" //bool. Should the player issuing this build command be able to control the building once built?
+    "UnitName"            "npc_orc_20"
+
+    "OnSpellStart"
     {
       "RunScript"
       { "Target"          "POINT"
-        "ScriptFile"			"scripts/vscripts/buildings.lua"
-				"Function"				"getBuildingPoint"
-				"UName"           "npc_orc_20"
-				"GoldCost"        "100"
-				"RenKou"          "1"
+        "ScriptFile"      "scripts/vscripts/buildings.lua"
+        "Function"        "getBuildingPoint"
+        "UName"           "npc_orc_20"
+        "GoldCost"        "60"
+        "RenKou"          "1"
       }
     }
   }
     "orc_3"                       //造狼骑士
   {
     "BaseClass" "ability_datadriven"
-    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
     "AbilityManaCost" "0"
     "AbilityTextureName" "orc_30"
-    "AbilityCastRange" "500"
+    "AbilityCastRange" "100"
     "AbilityCastPoint" "0"
     "AbilityChannelTime" "1.5"
-    "OnChannelSucceeded"
+    // BuildingHelper info
+    "Building"            "1" //bool
+    "BuildingSize"          "2" // this is (3x64) by (3x64) units, so 9 squares.
+    "BuildTime"           "2.0"
+    "AbilityCastRange"        "100"
+    "UpdateHealth"          "1" //bool
+    "Scale"             "1" //bool
+    "MaxScale"            "1.3"
+    "PlayerCanControl"        "1" //bool. Should the player issuing this build command be able to control the building once built?
+    "UnitName"            "npc_orc_30"
+
+    "OnSpellStart"
     {
       "RunScript"
       { "Target"          "POINT"
-        "ScriptFile"			"scripts/vscripts/buildings.lua"
-				"Function"				"getBuildingPoint"
-				"UName"           "npc_orc_30"
-				"GoldCost"        "100"
-				"RenKou"          "1"
+        "ScriptFile"      "scripts/vscripts/buildings.lua"
+        "Function"        "getBuildingPoint"
+        "UName"           "npc_orc_30"
+        "GoldCost"        "90"
+        "RenKou"          "1"
       }
     }
   }
     "orc_4"                       //造巫医学徒
   {
     "BaseClass" "ability_datadriven"
-    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
     "AbilityManaCost" "0"
     "AbilityTextureName" "orc_40"
-    "AbilityCastRange" "500"
+    "AbilityCastRange" "100"
     "AbilityCastPoint" "0"
     "AbilityChannelTime" "1.5"
-    "OnChannelSucceeded"
+    // BuildingHelper info
+    "Building"            "1" //bool
+    "BuildingSize"          "2" // this is (3x64) by (3x64) units, so 9 squares.
+    "BuildTime"           "2.0"
+    "AbilityCastRange"        "100"
+    "UpdateHealth"          "1" //bool
+    "Scale"             "1" //bool
+    "MaxScale"            "1.3"
+    "PlayerCanControl"        "1" //bool. Should the player issuing this build command be able to control the building once built?
+    "UnitName"            "npc_orc_40"
+
+    "OnSpellStart"
     {
       "RunScript"
       { "Target"          "POINT"
-        "ScriptFile"			"scripts/vscripts/buildings.lua"
-				"Function"				"getBuildingPoint"
-				"UName"           "npc_orc_40"
-				"GoldCost"        "100"
-				"RenKou"          "1"
+        "ScriptFile"      "scripts/vscripts/buildings.lua"
+        "Function"        "getBuildingPoint"
+        "UName"           "npc_orc_40"
+        "GoldCost"        "100"
+        "RenKou"          "1"
       }
     }
   }
     "orc_5"                       //造风龙
   {
-    "BaseClass" "ability_datadriven"
-    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+   "BaseClass" "ability_datadriven"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
     "AbilityManaCost" "0"
     "AbilityTextureName" "orc_50"
-    "AbilityCastRange" "500"
+    "AbilityCastRange" "100"
     "AbilityCastPoint" "0"
     "AbilityChannelTime" "1.5"
-    "OnChannelSucceeded"
+    // BuildingHelper info
+    "Building"            "1" //bool
+    "BuildingSize"          "2" // this is (3x64) by (3x64) units, so 9 squares.
+    "BuildTime"           "2.0"
+    "AbilityCastRange"        "100"
+    "UpdateHealth"          "1" //bool
+    "Scale"             "1" //bool
+    "MaxScale"            "1.3"
+    "PlayerCanControl"        "1" //bool. Should the player issuing this build command be able to control the building once built?
+    "UnitName"            "npc_orc_50"
+
+    "OnSpellStart"
     {
       "RunScript"
       { "Target"          "POINT"
-        "ScriptFile"			"scripts/vscripts/buildings.lua"
-				"Function"				"getBuildingPoint"
-				"UName"           "npc_orc_50"
-				"GoldCost"        "100"
-				"RenKou"          "1"
+        "ScriptFile"      "scripts/vscripts/buildings.lua"
+        "Function"        "getBuildingPoint"
+        "UName"           "npc_orc_50"
+        "GoldCost"        "180"
+        "RenKou"          "1"
       }
     }
   }
     "orc_6"                       //造酋长
   {
     "BaseClass" "ability_datadriven"
-    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
+    "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
     "AbilityManaCost" "0"
     "AbilityTextureName" "orc_60"
-    "AbilityCastRange" "500"
+    "AbilityCastRange" "100"
     "AbilityCastPoint" "0"
     "AbilityChannelTime" "1.5"
-    "OnChannelSucceeded"
+    // BuildingHelper info
+    "Building"            "1" //bool
+    "BuildingSize"          "2" // this is (3x64) by (3x64) units, so 9 squares.
+    "BuildTime"           "2.0"
+    "AbilityCastRange"        "100"
+    "UpdateHealth"          "1" //bool
+    "Scale"             "1" //bool
+    "MaxScale"            "1.3"
+    "PlayerCanControl"        "1" //bool. Should the player issuing this build command be able to control the building once built?
+    "UnitName"            "npc_orc_60"
+
+    "OnSpellStart"
     {
       "RunScript"
       { "Target"          "POINT"
-        "ScriptFile"			"scripts/vscripts/buildings.lua"
-				"Function"				"getBuildingPoint"
-				"UName"           "npc_orc_60"
-				"GoldCost"        "100"
-				"RenKou"          "1"
+        "ScriptFile"      "scripts/vscripts/buildings.lua"
+        "Function"        "getBuildingPoint"
+        "UName"           "npc_orc_60"
+        "GoldCost"        "300"
+        "RenKou"          "2"
       }
     }
   }
@@ -2551,8 +2673,8 @@
         "ScriptFile"            "scripts/vscripts/buildings.lua"
                 "Function"              "change_little"
                 "NewUnit"         "npc_orc_21"
-                "GoldCost"        "80"
-                "RenKou"          "0"
+                "GoldCost"        "120"
+                "RenKou"          "1"
       }
     }
   }

@@ -348,7 +348,7 @@ end
 function legiontdGameMode:InitGameMode()
 
   --准备时间
-	GameRules:SetPreGameTime(600)
+	GameRules:SetPreGameTime(90)
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, "GlobalThink", 2 )
   
   GameRules:SetSameHeroSelectionEnabled(true)
@@ -397,44 +397,10 @@ end
 
 
 function legiontdGameMode:OnEntityKilled( keys )
-	--print( '[SAMPLERTS] OnEntityKilled Called' )
-	--PrintTable( keys )
-  --[[
-	-- The Unit that was Killed
-	local killedUnit = EntIndexToHScript( keys.entindex_killed )
-	-- The Killing entity
-	local killerEntity = nil
-
-	if keys.entindex_attacker ~= nil then
-		killerEntity = EntIndexToHScript( keys.entindex_attacker )
-	end
-
-	if killedUnit:IsRealHero() then
-		--print ("KILLEDKILLER: " .. killedUnit:GetName() .. " -- " .. killerEntity:GetName())
-		if killedUnit:GetTeam() == DOTA_TEAM_BADGUYS and killerEntity:GetTeam() == DOTA_TEAM_GOODGUYS then
-			self.nRadiantKills = self.nRadiantKills + 1
-			if END_GAME_ON_KILLS and self.nRadiantKills >= KILLS_TO_END_GAME_FOR_TEAM then
-				GameRules:SetSafeToLeave( true )
-				GameRules:SetGameWinner( DOTA_TEAM_GOODGUYS )
-			end
-		elseif killedUnit:GetTeam() == DOTA_TEAM_GOODGUYS and killerEntity:GetTeam() == DOTA_TEAM_BADGUYS then
-			self.nDireKills = self.nDireKills + 1
-			if END_GAME_ON_KILLS and self.nDireKills >= KILLS_TO_END_GAME_FOR_TEAM then
-				GameRules:SetSafeToLeave( true )
-				GameRules:SetGameWinner( DOTA_TEAM_BADGUYS )
-			end
-		end
-
-		if SHOW_KILLS_ON_TOPBAR then
-			GameRules:GetGameModeEntity():SetTopBarTeamValue ( DOTA_TEAM_BADGUYS, self.nDireKills )
-			GameRules:GetGameModeEntity():SetTopBarTeamValue ( DOTA_TEAM_GOODGUYS, self.nRadiantKills )
-		end
-	end]]
-	-- Put code here to handle when an entity gets killed
-	-- START OF BH SNIPPET
+	--[[
 	if BuildingHelper:IsBuilding(killedUnit) then
 		killedUnit:RemoveBuilding(false)
-	end
+	end]]
 	-- END OF BH SNIPPET
 end
 

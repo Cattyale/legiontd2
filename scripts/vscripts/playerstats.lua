@@ -222,8 +222,8 @@ function sendinfotoui()
 
   for i=0,8,1 do
     if not(i==4) then
-      p[i]=tostring(PlayerS[i][1]).."      "..tostring(PlayerS[i][2]).."        "..tostring(PlayerS[i][7]).."/"..tostring(PlayerS[i][8]).."          "..tostring(PlayerS[i][9]).."          "..tostring(PlayerS[i][5]).."          "..tostring(PlayerS[i][12]).."           "..tostring(PlayerS[i][3]).."/"..tostring(PlayerS[i][4])
-      pp[i]=tostring(PlayerS[i][1]).."         "..tostring(PlayerS[i][2]).."          "..tostring(PlayerS[i][7]).."/"..tostring(PlayerS[i][8]).."           "..tostring(PlayerS[i][3]).."/"..tostring(PlayerS[i][4])
+      p[i]=tostring(PlayerS[i][1]).."       "..tostring(PlayerS[i][2]).."         "..tostring(PlayerS[i][7]).."/"..tostring(PlayerS[i][8]).."          "..tostring(PlayerS[i][9]).."           "..tostring(PlayerS[i][5]).."          "..tostring(PlayerS[i][12]).."           "..tostring(PlayerS[i][3]).."/"..tostring(PlayerS[i][4])
+      pp[i]=tostring(PlayerS[i][1]).."           "..tostring(PlayerS[i][2]).."            "..tostring(PlayerS[i][7]).."/"..tostring(PlayerS[i][8]).."             "..tostring(PlayerS[i][3]).."/"..tostring(PlayerS[i][4])
     end
   end
 

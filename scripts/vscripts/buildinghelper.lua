@@ -12,6 +12,8 @@ BUILDINGHELPER_THINK = 0.03
 GRIDNAV_SQUARES = {}
 BUILDING_SQUARES = {}
 
+--change this variable to be false if u dont want the construction area for each player
+RESTRICTION_AREA_OPEN=true
 --these tables are special for restricted areas. 
 MYLL_SQUARES = {}
 --players could plant several trigger entities in map to indicate the open area for each player
@@ -111,12 +113,13 @@ function BuildingHelper:Init(...)
 
 			end
 		    --for each square check if the square is inside the construction zone
-
+            local temp=Entities:FindByName(nil, "buildarea_0")
+            print(temp:GetName())
             for _,thing in pairs(Entities:FindAllInSphere(GetGroundPosition(Vector(x,y,0), nil), CHECKINGRADIUS))  do
                 --find the construction zone where this vector is in
                 local AreaName=thing:GetName()
                 local pid=tonumber(string.sub(AreaName,11,11))
- 
+                print("this vector is inside the player ",pid," 's building area (",x,",", y, ")" )
                 if (not(pid==nil)) then
                   MYLL_SQUARES[pid][VectorString(Vector(x,y,0))] = true
                 end  
@@ -483,7 +486,6 @@ function BuildingHelper:AddBuilding(keys)
 	-- Private function.
 	function keys:AddToGrid(vPoint)
 		-- Remember, our blocked squares are defined according to the square's center.
-		print("jajajaaddtogrid")
 		local centerX = SnapToGrid64(vPoint.x)
 		local centerY = SnapToGrid64(vPoint.y)
 		-- Buildings are centered differently when the size is odd.
@@ -544,11 +546,8 @@ function BuildingHelper:AddBuilding(keys)
 		local abil = caster:FindAbilityByName(abilName)
 		abil.succeeded = false
 		abil:SetLevel(1)
-		local temp=DoUniqueString("order")
-		caster.orders[temp] = {["unitName"] = unitName, ["pos"] = vBuildingCenter, ["team"] = caster:GetTeam(),
+		caster.orders[DoUniqueString("order")] = {["unitName"] = unitName, ["pos"] = vBuildingCenter, ["team"] = caster:GetTeam(),
 			["buildingTable"] = buildingTable, ["squares_to_close"] = closed, ["keys"] = keys}
-	    --print(DoUniqueString("order"))
-		--PrintTable(caster.orders[temp])	
 		Timers:CreateTimer(.03, function()
 			local casterIndex = caster:GetEntityIndex()
 			local order = DOTA_UNIT_ORDER_CAST_POSITION
@@ -596,16 +595,13 @@ function BuildingHelper:InitializeBuildingEntity(keys)
 	local order = nil
 	local key = ""
 	for k,v in pairs(orders) do
-		print(pos," ",v["pos"])
 		if v["pos"] == pos then
 			order = v
 			key = k
-			print("yes",order)
 		end
 	end
 
 	if not order then
-		print(order)
 		print('[BuildingHelper] Error: Caster has no currBuildingOrder.')
 		return
 	end
@@ -617,7 +613,8 @@ function BuildingHelper:InitializeBuildingEntity(keys)
 
 	-- let's still make sure we can build here. Someone else may have built a building here
 	-- during the time walking to the spot.
-	if BuildingHelper:IsAreaBlocked(squaresToClose, pid) then
+	
+	if BuildingHelper:IsAreaBlocked(squaresToClose, pid) and (not RESTRICTION_AREA_OPEN) then
 		return
 	end
 
@@ -816,10 +813,13 @@ function BuildingHelper:InitializeBuildingEntity(keys)
 end
 
 function BuildingHelper:IsBuilding( hUnit )
-	if not hUnit.isBuilding then
-		return false
-	end
-	return true
+   if  hUnit then
+	  if not hUnit.isBuilding then
+	  	return false
+	  end
+   end
+	  return true
+
 end
 
 -- Occurs when move_to_point goes out of phase.
@@ -1069,7 +1069,7 @@ function BuildingHelper:IsRectangularAreaBlocked(boundingRect , pid )
 	for x=boundingRect.leftBorderX+32,boundingRect.rightBorderX-32,64 do
 		for y=boundingRect.topBorderY-32,boundingRect.bottomBorderY+32,-64 do
 			local vect = Vector(x,y,0)
-			if GRIDNAV_SQUARES[VectorString(vect)] or BUILDING_SQUARES[VectorString(vect)] or not(MYLL_SQUARES[pid][VectorString(vect)]) then
+			if GRIDNAV_SQUARES[VectorString(vect)] or BUILDING_SQUARES[VectorString(vect)] or ((not(MYLL_SQUARES[pid][VectorString(vect)])) and (RESTRICTION_AREA_OPEN)) then
 				return true
 			end
 		end
@@ -1080,9 +1080,9 @@ end
 function IsSquareBlocked( sqCenter, bVectorForm, pid )
 	if bVectorForm then
 		sqCenter = Vector(sqCenter.x, sqCenter.y, 0)
-		return GRIDNAV_SQUARES[VectorString(sqCenter)] or BUILDING_SQUARES[VectorString(sqCenter)] or not(MYLL_SQUARES[pid][VectorString(sqCenter)])
+		return GRIDNAV_SQUARES[VectorString(sqCenter)] or BUILDING_SQUARES[VectorString(sqCenter)] or ((not(MYLL_SQUARES[pid][VectorString(sqCenter)])) and (RESTRICTION_AREA_OPEN))
 	else
-		return GRIDNAV_SQUARES[sqCenter] or BUILDING_SQUARES[sqCenter] or not(MYLL_SQUARES[pid][sqCenter])
+		return GRIDNAV_SQUARES[sqCenter] or BUILDING_SQUARES[sqCenter] or ((not(MYLL_SQUARES[pid][sqCenter])) and (RESTRICTION_AREA_OPEN))
 	end
 
 end
