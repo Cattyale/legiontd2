@@ -18,12 +18,11 @@ function getBuildingPoint(keys)
   local pID = player:GetPlayerID()
   
   if ((PlayerS[pid][4]-PlayerS[pid][3])<rk) then
-    Say(nil,"you need more food!", false)
-    return
+    FireGameEvent( 'custom_error_show', { player_ID = pid, _error = "you need more food!" } )
   end
 
   if PlayerS[pid][1]<gc then
-    Say(nil,"you need more gold!", false)
+    FireGameEvent( 'custom_error_show', { player_ID = pid, _error = "you need more gold!" } )
     return
   end    
 
@@ -148,11 +147,11 @@ function change_little(keys)
       PlayerS[13][xuhao]:SetContext("pid",tostring(axb),0)
       PlayerS[13][xuhao]:AddNewModifier(caster, nil, "modifier_rooted", nil)
     else
-      Say(nil,"you need more food!", false)
+      FireGameEvent( 'custom_error_show', { player_ID = pid, _error = "you need more food!" } )
     end
   else
   
-    Say(nil,"not enough gold", false)
+    FireGameEvent( 'custom_error_show', { player_ID = pid, _error = "you need more gold!" } )
   
   end
 
@@ -245,7 +244,7 @@ function hire(keys)                --购买佣兵
 
 
   else
-       Say(nil,"not enough lumber", false)
+       FireGameEvent( 'custom_error_show', { player_ID = pid, _error = "you need more energy!" } )
   end
    
 end
@@ -272,11 +271,11 @@ function renkou(keys)
       sendinfotoui()
       
     else
-      Say(nil,"not enough lumber", false)
+      FireGameEvent( 'custom_error_show', { player_ID = pid, _error = "you need more energy!" } )
     end
   
   else
-    Say(nil,"not enough gold", false)
+    FireGameEvent( 'custom_error_show', { player_ID = pid, _error = "you need more gold!" } )
   end
 end
 
@@ -304,14 +303,14 @@ function keji(keys)
       
         sendinfotoui()
       else
-         Say(nil,"alreay max lv", false)
+         FireGameEvent( 'custom_error_show', { player_ID = pid, _error = "already max level!" } )
       end
     else
-      Say(nil,"not enough lumber", false)
+      FireGameEvent( 'custom_error_show', { player_ID = pid, _error = "you need more energy!" } )
     end
   
   else
-    Say(nil,"not enough gold", false)
+    FireGameEvent( 'custom_error_show', { player_ID = pid, _error = "you need more gold!" } )
   end
 end
 
@@ -330,7 +329,7 @@ function gegeda_2( keys )
   local pid=tonumber(caster:GetContext("name")) 
   if PlayerS[pid][1]>=50 then
   
-
+  PlayerS[pid][1]=PlayerS[pid][1]-50
 	GameRules:GetGameModeEntity():SetContextThink(DoUniqueString("gegeda"), 
     
 	  function( )
@@ -354,7 +353,7 @@ function gegeda_2( keys )
   PlayerS[pid][7]=PlayerS[pid][7]+1
   sendinfotoui()
   else
-      Say(nil,"not enough gold", false)
+      FireGameEvent( 'custom_error_show', { player_ID = pid, _error = "you need more gold!" } )
   end  
 end
 
@@ -383,7 +382,8 @@ end
 
 function rc(mm)            --随机函数
 
-  math.randomseed(math.ceil(Time()))
+  local timeTxt = string.gsub(string.gsub(GetSystemTime(), ':', ''), '0','') 
+  math.randomseed(tonumber(timeTxt))
 
   local i=1;
   while not(mm[i]==nil) do
@@ -414,15 +414,15 @@ function lightkinghp(keys)
           PlayerS[pid][12]=PlayerS[pid][12]+3              --加收入
           sendinfotoui()
         else
-          Say(nil,"Already Max Level!",false)
+          FireGameEvent( 'custom_error_show', { player_ID = pid, _error = "Already Max Level!" } )
         end
       end
 
     else
-      Say(nil,"Already Max Level!",false)
+      FireGameEvent( 'custom_error_show', { player_ID = pid, _error = "Already Max Level!" } )
     end
   else
-    Say(nil,"need more lumber",false)
+    FireGameEvent( 'custom_error_show', { player_ID = pid, _error = "need more energy" } )
   end
 
 end
@@ -448,7 +448,7 @@ function lightkingheal(keys)
           PlayerS[pid][12]=PlayerS[pid][12]+3
           sendinfotoui()          
         else
-          Say(nil,"Already Max Level!",false)
+          FireGameEvent( 'custom_error_show', { player_ID = pid, _error = "Already Max Level!" } )
         end
       end
 
@@ -456,10 +456,10 @@ function lightkingheal(keys)
 
 
     else
-      Say(nil,"Already Max Level!",false)
+      FireGameEvent( 'custom_error_show', { player_ID = pid, _error = "Already Max Level!" } )
     end
   else
-    Say(nil,"need more lumber",false)
+    FireGameEvent( 'custom_error_show', { player_ID = pid, _error = "need more energy" } )
   end
 end
 
@@ -484,15 +484,15 @@ function lightkingatk(keys)
           PlayerS[pid][12]=PlayerS[pid][12]+3
           sendinfotoui()
         else
-          Say(nil,"Already Max Level!",false)
+          FireGameEvent( 'custom_error_show', { player_ID = pid, _error = "Already Max Level!" } )
         end
       end
 
     else
-      Say(nil,"Already Max Level!",false)
+      FireGameEvent( 'custom_error_show', { player_ID = pid, _error = "Already Max Level!" } )
     end
   else
-    Say(nil,"need more lumber",false)
+    FireGameEvent( 'custom_error_show', { player_ID = pid, _error = "need more energy" } )
   end
 end
 

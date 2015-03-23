@@ -37,12 +37,12 @@
 		"AttackCapabilities"   "DOTA_UNIT_CAP_NO_ATTACK"
 		
 		"Abilitylayout" "6"
-		"Ability1" "natural_1"
-		"Ability2" "natural_2"
-		"Ability3" "natural_3"
-		"Ability4" "natural_4"
-		"Ability5" "natural_5"
-		"Ability6" "natural_6"
+		"Ability1" "nature_1"
+		"Ability2" "nature_2"
+		"Ability3" "nature_3"
+		"Ability4" "nature_4"
+		"Ability5" "nature_5"
+		"Ability6" "nature_6"
 	 //"Ability7" "king_heal"  TODO	
 	 
 	 
@@ -207,7 +207,7 @@
 		
 		"Abilitylayout" "6"
 		"Ability1" "reroll"
-		"Ability2" "terrorblade_metamorphosis_datadriven"
+		"Ability2" ""
 		"Ability3" ""
 		"Ability4" ""
 		"Ability5" ""
