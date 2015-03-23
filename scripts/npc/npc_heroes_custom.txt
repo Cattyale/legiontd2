@@ -208,7 +208,7 @@
 		"Abilitylayout" "6"
 		"Ability1" "reroll"
 		"Ability2" "terrorblade_metamorphosis_datadriven"
-		"Ability3" "build_rocket_launcher"
+		"Ability3" ""
 		"Ability4" ""
 		"Ability5" ""
 		"Ability6" ""

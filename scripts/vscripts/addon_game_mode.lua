@@ -7,6 +7,14 @@ require('FlashUtil')
 require('buildinghelper')
 require('abilities')
 require('util')
+-- Load Stat collection (statcollection should be available from any script scope)
+require('lib.statcollection')
+statcollection.addStats({
+    modID = 'a43fc83f8de68cc3a68b06c6d1160455' --GET THIS FROM http://getdotastats.com/#d2mods__my_mods
+})
+
+print( "Example stat collection game mode loaded." )
+
 hulage=0
 if legiontdGameMode == nil then
 	legiontdGameMode = class({})
