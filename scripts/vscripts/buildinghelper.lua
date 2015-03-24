@@ -113,8 +113,6 @@ function BuildingHelper:Init(...)
 
 			end
 		    --for each square check if the square is inside the construction zone
-            local temp=Entities:FindByName(nil, "buildarea_0")
-            print(temp:GetName())
             for _,thing in pairs(Entities:FindAllInSphere(GetGroundPosition(Vector(x,y,0), nil), CHECKINGRADIUS))  do
                 --find the construction zone where this vector is in
                 local AreaName=thing:GetName()

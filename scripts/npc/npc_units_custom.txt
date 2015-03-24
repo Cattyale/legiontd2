@@ -1203,14 +1203,14 @@
     "MinimapIcon" ""
     "MinimapIconSize" "50"
     "HealthBarOffset" "-1"
-    "Abilitylayout" "5"
+    "Abilitylayout" "4"
     "Ability1" "light_king_hp"
 
 
     "Ability2" "light_king_heal"
     "Ability3" "light_king_atk"
     "Ability4" "up_keji"
-    "Ability5" "show"
+    "Ability5" ""
     "Ability6" ""
     "Ability7" ""
     "Ability8" ""
@@ -1395,8 +1395,8 @@
     "ArmorPhysical" "3"                                               //护甲
     "MagicalResistance" "0"
     "AttackCapabilities" "DOTA_UNIT_CAP_MELEE_ATTACK"                 //近战or远程
-    "AttackDamageMin" "3"                                             //攻击力
-    "AttackDamageMax" "4"
+    "AttackDamageMin" "2"                                             //攻击力
+    "AttackDamageMax" "3"
     "AttackRate" "1.25"                                               //攻速
     "AttackAnimationPoint" "0.4"                                      //攻击前摇
     "AttackAcquisitionRange" "600"                                    //攻击距离
@@ -1443,8 +1443,8 @@
     "ArmorPhysical" "3"                                               //护甲
     "MagicalResistance" "0"
     "AttackCapabilities" "DOTA_UNIT_CAP_MELEE_ATTACK"                 //近战or远程
-    "AttackDamageMin" "3"                                             //攻击力
-    "AttackDamageMax" "5"
+    "AttackDamageMin" "2"                                             //攻击力
+    "AttackDamageMax" "4"
     "AttackRate" "1"                                                  //攻速
     "AttackAnimationPoint" "0.4"                                      //攻击前摇
     "AttackAcquisitionRange" "600"                                    //攻击距离
@@ -1512,8 +1512,8 @@
     "ArmorPhysical" "3"                                               //护甲
     "MagicalResistance" "0"
     "AttackCapabilities" "DOTA_UNIT_CAP_MELEE_ATTACK"                 //近战or远程
-    "AttackDamageMin" "6"                                             //攻击力
-    "AttackDamageMax" "8"
+    "AttackDamageMin" "4"                                             //攻击力
+    "AttackDamageMax" "7"
     "AttackRate" "1.1"    	                                            //攻速
     "AttackAnimationPoint" "0.4"                                      //攻击前摇
     "AttackAcquisitionRange" "600"                                    //攻击距离
