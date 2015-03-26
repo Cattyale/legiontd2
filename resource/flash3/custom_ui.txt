@@ -3,7 +3,7 @@
     "1"
     {
         "File"      "CustomUI"
-        "Depth"     "11"
+        "Depth"     "100"
     }
     "2"
     {
