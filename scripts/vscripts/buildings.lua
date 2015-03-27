@@ -327,14 +327,17 @@ function gegeda_2( keys )
 	local caster = keys.caster
   local tt=caster:GetContext("name")
   local pid=tonumber(caster:GetContext("name")) 
+  print("start working")
   if PlayerS[pid][1]>=50 then
-  
+  print("enough gold")
   PlayerS[pid][1]=PlayerS[pid][1]-50
 	GameRules:GetGameModeEntity():SetContextThink(DoUniqueString("gegeda"), 
     
 	  function( )
       local state = GameRules:State_Get()
-      if state == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+      print(state)
+      --if state == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+        print("jiamutou!")
   			local effect2 = ParticleManager:CreateParticle(keys.effect2, PATTACH_WORLDORIGIN, caster)
 	  		ParticleManager:SetParticleControl(effect2, 0, caster:GetOrigin())
 	  		ParticleManager:ReleaseParticleIndex(effect2)
@@ -346,7 +349,7 @@ function gegeda_2( keys )
 	  		sendinfotoui()
 	  		return keys.time
 			
-	  	end
+	  	--end
     end
     , 0)
   caster:RemoveAbility("gegeda")
