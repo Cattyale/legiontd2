@@ -1,4 +1,10 @@
 require('playerstats')
+shoubo={}
+shouwang={}
+    for i=1,30 do
+	  shoubo[i]=5*i+75
+	  shouwang[i]=3*i+30
+    end
 
 -------------------------------------------------------------------------------------------
 if CFRoundThinker == nil then
@@ -16,7 +22,7 @@ local ROUND_REST_TIME_BASE = 30
 
 -------------------------------------------------------------------------------------------
 function CFRoundThinker:InitPara(kv)
-
+    roundnum=1
 	self._nCurrRound = 0
 	self._currentState = ROUND_STATE_PREPARE
 	self._nRoundRestTime = GameRules:GetGameTime() + ROUND_REST_TIME_BASE
@@ -65,7 +71,7 @@ function CFRoundThinker:ThinkFighting()
 	    rebuildunit()       --重建所有兵
 	    setunitstop()       --静止所有兵移动
         jiesuan()           --为玩家结算收入
-
+        roundnum=roundnum+1
 
 
 		-- 如果每一轮的怪物都被干掉了
@@ -314,7 +320,9 @@ end
 function jiesuan()
    for i=0,8 do
      if (not(i==4)) and (PlayerS[i][30]==1)then
-              
+          PlayerS[i][1]=PlayerS[i][1]+shoubo[roundnum]+shouwang[roundnum]+PlayerS[i][12]
+          local temp="You have gained "..shoubo[roundnum].." gold from finishing the wave; You have gained "..shouwang[roundnum].." gold from successfully defending the king; You have gained "..PlayerS[i][12].." gold from your income!"
+          FireGameEvent( 'custom_error_show', { player_ID = i, _error = temp} )  
      end
 
    end
