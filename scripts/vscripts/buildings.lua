@@ -431,6 +431,7 @@ function lightkingheal(keys)
   local caster=keys.caster
   local temp=caster:GetContext("name")
   local pid=tonumber(temp)
+  testgrid();
   if PlayerS[pid][2]>=100 then
     if lwang[2]<15 then
       if pid<4 then
@@ -516,3 +517,23 @@ function PopupNumbers(target, pfx, color, lifetime, number, presymbol, postsymbo
 end
 
 
+function testgrid(keys)
+
+ print( '******* Displaying Building Grids ***************' )
+  local caster=keys.caster
+  local temp=caster:GetContext("name")
+  local pid=tonumber(temp)
+  local playerID = pid
+ 
+    if playerID ~= nil and playerID ~= -1 then
+      -- Do something here for the player who called this command
+    for i,v in ipairs(BUILDING_SQUARES) do
+      for i2,v2 in ipairs(v) do
+        --BuildingHelper:PrintSquareFromCenterPoint(v2)
+      end
+    end
+    end
+
+  print( '*********************************************' )
+
+end
