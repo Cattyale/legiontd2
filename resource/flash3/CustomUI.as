@@ -70,18 +70,14 @@
 			var ycorrec:Number= stage.stageHeight/5*3;
 			
 			wtf.y=ycorrec;
-			an.y=stage.stageHeight;
-			pmb.y=stage.stageHeight;
+			an.y=ycorrec;
+			pmb.y=ycorrec;
 			
 			wtf.x=0;
-			an.x=stage.stageWidth;
-			pmb.x=stage.stageWidth;
+			an.x=0;
+			pmb.x=0;
 		    
-			pmb.width=stage.stageWidth*118/1000*2.2;
-			pmb.height=stage.stageHeight*208/1000*1.1;
 			
-			//an.width=pmb.width/5*2.1;
-			//an.height=pmb.height/5*1.1;
                     
             //You will probably want to scale your elements by here, they keep the same width and height by default.
 
