@@ -1,7 +1,7 @@
 "CustomEvents"
 {
   "ui_update"
-  { 
+  {  //http://www.math.wisc.edu/~terwilli/Htmlfiles/ex6sol475.pdf 数学413的答案
     //设定参数的类型和名称
 
     "player1"        "string"
@@ -16,47 +16,14 @@
 
    "p_update"
    {
-    "pp1g"            "string"
-    "pp1e"            "string"
-    "pp1r"            "string"
-    "pp1k"            "string"
-
-    "pp2g"            "string"
-    "pp2e"            "string"
-    "pp2r"            "string"
-    "pp2k"            "string"
-
-    "pp3g"            "string"
-    "pp3e"            "string"
-    "pp3r"            "string"
-    "pp3k"            "string"
-
-    "pp4g"            "string"
-    "pp4e"            "string"
-    "pp4r"            "string"
-    "pp4k"            "string"
-
-    "pp5g"            "string"
-    "pp5e"            "string"
-    "pp5r"            "string"
-    "pp5k"            "string"
-
-    "pp6g"            "string"
-    "pp6e"            "string"
-    "pp6r"            "string"
-    "pp6k"            "string"
-
-    "pp7g"            "string"
-    "pp7e"            "string"
-    "pp7r"            "string"
-    "pp7k"            "string"
-
-    "pp8g"            "string"
-    "pp8e"            "string"
-    "pp8r"            "string"
-    "pp8k"            "string"
-
-    
+    "pp1"            "string"
+    "pp2"            "string"
+    "pp3"            "string"
+    "pp4"            "string"
+    "pp5"            "string"
+    "pp6"            "string"
+    "pp7"            "string"
+    "pp8"            "string"
   }
   "FlashUtil_request"
   {

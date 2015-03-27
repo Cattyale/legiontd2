@@ -62,7 +62,7 @@
 		public function GoldChanged(e:TimerEvent){
 			this.globals.Loader_shop.movieClip.shop.recommendedTab.visible = false;
 			this.globals.Loader_actionpanel.movieClip.middle.statRegion.visible=false;
-			this.globals.Loader_actionpanel.movieClip.middle.stats.visible=false;
+			this.globals.Loader_actionpanel.movieClip.middle.stats.visible.false;
 		}
 		//this handles the resizes - credits to Nullscope
 		public function onResize(re:ResizeManager) : * {
