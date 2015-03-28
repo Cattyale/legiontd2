@@ -117,7 +117,7 @@ function BuildingHelper:Init(...)
                 --find the construction zone where this vector is in
                 local AreaName=thing:GetName()
                 local pid=tonumber(string.sub(AreaName,11,11))
-                print("this vector is inside the player ",pid," 's building area (",x,",", y, ")" )
+                
                 if (not(pid==nil)) then
                   MYLL_SQUARES[pid][VectorString(Vector(x,y,0))] = true
                 end  

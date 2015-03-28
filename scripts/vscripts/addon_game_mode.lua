@@ -37,6 +37,8 @@ function PrecacheEveryThingFromKV( context )
     "models/items/chen/head_navi/head_navi.vmdl",
     "models/items/chen/mount_navi_new/mount_navi_new.vmdl",
     "models/items/chen/shoulder_navi/shoulder_navi.vmdl",
+    "models/items/chen/desert_gale_shoulder_plate/desert_gale_shoulder_plate.vmdl",
+    "models/items/chen/neck_desert/neck_desert",
 
     "models/heroes/windrunner/windrunner_bow.vmdl",
 "models/heroes/windrunner/windrunner_cape.vmdl",

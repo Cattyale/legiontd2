@@ -1054,7 +1054,7 @@
       
     "MinimapIcon" ""
     "MinimapIconSize" "100"
-    "HealthBarOffset" "-1"
+    "HealthBarOffset" "10"
     "Ability1" ""
     "Ability2" ""
 //    "Ability3" "upgrade_king_hp"
@@ -1188,6 +1188,48 @@
     "Creature" {
 
     "HPGain"     "200"
+
+    "AttachWearables"   // ∏Ωº” Œ∆∑
+                {
+                    "Wearable1"
+                    {
+                        "ItemDef"           "5733"  
+                    }
+                    "Wearable2"
+                    {
+                        "ItemDef"           "6588"  
+                    }
+                    "Wearable3"
+                    {
+                        "ItemDef"           "5708"  
+                    }
+                    "Wearable4"
+                    {
+                        "ItemDef"           "5998"  
+                    }
+
+                    "Wearable5"
+                    {
+                        "ItemDef"           "5662"  
+                    }
+
+                      "Wearable6"
+                    {
+                        "ItemDef"           "5663"  
+                    }
+                      "Wearable7"
+                    {
+                        "ItemDef"           "5664"  
+                    }
+                      "Wearable8"
+                    {
+                        "ItemDef"           "5732"  
+                    }
+                      "Wearable9"
+                    {
+                        "ItemDef"           "5036"  
+                    }
+                }
     }
 
 
