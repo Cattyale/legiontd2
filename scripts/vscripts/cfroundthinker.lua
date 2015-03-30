@@ -263,15 +263,18 @@ function setherosil()
 
        PlayerS[i][19]=0                  --清理出兵flag
        
-       local j=0
+       if yx[i] then
       
-        for j = 0,15,1 do
+          for j = 0,15,1 do
+           
+            local temp1=yx[i]:GetAbilityByIndex(j) --获取技能实体
+            if temp1 then  
+              temp1:SetLevel(0)                     --设置技能等级
+            end
 
-          local temp1=yx[i]:GetAbilityByIndex(j) --获取技能实体
-          if temp1 then  
-            temp1:SetLevel(0)                     --设置技能等级
-          end  
-        end
+          end
+     
+       end
      end
 
    end

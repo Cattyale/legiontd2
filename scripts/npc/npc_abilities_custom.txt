@@ -2669,7 +2669,7 @@
     "MaxScale"            "1.3"
     "PlayerCanControl"        "1" //bool. Should the player issuing this build command be able to control the building once built?
     "UnitName"            "npc_orc_10"
-
+    "HotKeyOverride"      "Q"
     "OnSpellStart"
     {
       "RunScript"
@@ -2701,7 +2701,7 @@
     "MaxScale"            "1.3"
     "PlayerCanControl"        "1" //bool. Should the player issuing this build command be able to control the building once built?
     "UnitName"            "npc_orc_20"
-
+    "HotKeyOverride"      "W"
     "OnSpellStart"
     {
       "RunScript"
@@ -2733,7 +2733,7 @@
     "MaxScale"            "1.3"
     "PlayerCanControl"        "1" //bool. Should the player issuing this build command be able to control the building once built?
     "UnitName"            "npc_orc_30"
-
+    "HotKeyOverride"      "E"
     "OnSpellStart"
     {
       "RunScript"
@@ -2765,7 +2765,7 @@
     "MaxScale"            "1.3"
     "PlayerCanControl"        "1" //bool. Should the player issuing this build command be able to control the building once built?
     "UnitName"            "npc_orc_40"
-
+    "HotKeyOverride"      "R"
     "OnSpellStart"
     {
       "RunScript"
@@ -2797,7 +2797,7 @@
     "MaxScale"            "1.3"
     "PlayerCanControl"        "1" //bool. Should the player issuing this build command be able to control the building once built?
     "UnitName"            "npc_orc_50"
-
+    "HotKeyOverride"      "Z"
     "OnSpellStart"
     {
       "RunScript"
@@ -2829,7 +2829,7 @@
     "MaxScale"            "1.3"
     "PlayerCanControl"        "1" //bool. Should the player issuing this build command be able to control the building once built?
     "UnitName"            "npc_orc_60"
-
+    "HotKeyOverride"      "X"
     "OnSpellStart"
     {
       "RunScript"

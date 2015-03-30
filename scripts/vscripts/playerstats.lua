@@ -40,13 +40,13 @@ function playerstats:init()
   hirer2=temp:GetAbsOrigin()                   --雇佣兵处1的坐标
   dummy2=CreateUnitByName("npc_dummy", hirer2, false, nil, nil, DOTA_TEAM_BADGUYS)
 
-  for i=1,10,1 do
+  for i=1,11,1 do
     local temp=Entities:FindByName(nil,"zhaomin2_"..tostring(i))
     local tempvec=temp:GetAbsOrigin()                   --雇佣兵处1的坐标
     local tempdumy=CreateUnitByName("npc_dummy", tempvec, false, nil, nil, 2)
   end
 
-  for i=1,10,1 do
+  for i=1,11,1 do
     local temp=Entities:FindByName(nil,"zhaomin1_"..tostring(i))
     local tempvec=temp:GetAbsOrigin()                   --雇佣兵处1的坐标
     local tempdumy=CreateUnitByName("npc_dummy", tempvec, false, nil, nil, DOTA_TEAM_BADGUYS)
