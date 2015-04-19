@@ -7,6 +7,7 @@ require('FlashUtil')
 require('buildinghelper')
 require('abilities')
 require('util')
+
 -- Load Stat collection (statcollection should be available from any script scope)
 require('lib.statcollection')
 statcollection.addStats({

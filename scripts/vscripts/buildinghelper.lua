@@ -588,7 +588,7 @@ function BuildingHelper:InitializeBuildingEntity(keys)
 	keys.ability.succeeded = true
     
     --for peasant it cant get its player id. will fix in the future
-    local pid=0
+    local pid=caster:GetPlayerOwnerID()
 	-- search and get the correct order
 	local order = nil
 	local key = ""

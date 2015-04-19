@@ -67,15 +67,15 @@
 		//this handles the resizes - credits to Nullscope
 		public function onResize(re:ResizeManager) : * {
 
-			var ycorrec:Number= stage.stageHeight/5*3;
+			//var ycorrec:Number= stage.stageHeight/5*3;
 			
-			wtf.y=ycorrec;
-			an.y=ycorrec;
-			pmb.y=ycorrec;
+			wtf.y=pmb.sjl.height;
+			an.y=0;
+			pmb.y=0;
 			
-			wtf.x=0;
-			an.x=0;
-			pmb.x=0;
+			wtf.x=stage.stageWidth;
+			an.x=stage.stageWidth;
+			pmb.x=stage.stageWidth;
 		    
 			
                     

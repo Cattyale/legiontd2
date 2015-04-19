@@ -101,8 +101,7 @@ function playerstats:init()
     if (not(i==4)) then
      if PlayerResource:IsValidPlayer(i) then
 
-        print("playerconnected:")
-        print(i)
+        print("playerconnected:",i)
 
         PlayerS[i][30]=1
       
