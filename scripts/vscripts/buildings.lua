@@ -19,6 +19,7 @@ function getBuildingPoint(keys)
   
   if ((PlayerS[pid][4]-PlayerS[pid][3])<rk) then
     FireGameEvent( 'custom_error_show', { player_ID = pid, _error = "you need more food!" } )
+    return
   end
 
   if PlayerS[pid][1]<gc then
